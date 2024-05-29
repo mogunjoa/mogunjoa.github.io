@@ -1,1 +1,33 @@
-Hello World
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script type="text/javascript">
+        // 리디렉션 URL 설정
+        var appLink = "intent://mogunjoa.github.io#Intent;scheme=https;package=com.emc.pickupgame;end;";
+        var fallbackUrl = "https://play.google.com/store/apps/details?id=com.emc.pickupgame";
+
+        // Android와 iOS 사용자 구분
+        function redirect() {
+            // 사용자 에이전트를 통해 플랫폼을 구분
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            
+            if (/android/i.test(userAgent)) {
+                // Android 사용자는 앱 링크 시도 후 리디렉션
+                window.location.href = appLink;
+            } else {
+                // 그 외의 경우 (iOS, 데스크탑 등)에는 Google Play 스토어로 리디렉션
+                window.location.href = fallbackUrl;
+            }
+        }
+
+        // 페이지 로드 시 리디렉션 수행
+        window.onload = redirect;
+    </script>
+</head>
+<body>
+    <p>Redirecting to the app or <a href="https://play.google.com/store/apps/details?id=com.emc.pickupgame">Google Play Store</a>...</p>
+</body>
+</html>
